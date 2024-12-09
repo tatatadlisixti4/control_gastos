@@ -1,13 +1,17 @@
 import {useState, useMemo, ChangeEvent} from "react"
 
 export default function BudgetForm() {
+    // State local para validar el formulario
     const [budget, setBudget] = useState(0)
+    
+    // Funciones para validar el formulario e iniciar el state local
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
         setBudget(e.target.valueAsNumber)
     }
     const isValid = useMemo(() => {
         return isNaN(budget) || budget <= 0
     }, [budget])
+
     return (
         <form className="space-y-5">
             <div className="flex flex-col space-y-5">
