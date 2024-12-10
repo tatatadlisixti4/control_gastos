@@ -22,7 +22,7 @@ export default function BudgetTracker() {
                 />
                 <AmountDisplay 
                     label="Gastado"
-                    amount="100"
+                    amount={100}
                 />
             </div>
         </div>
