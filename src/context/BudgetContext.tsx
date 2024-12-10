@@ -7,7 +7,6 @@ type BudgetContextProps = {
     state: BudgetState
     dispatch: Dispatch<BudgetActions>
 }
-
 type BudgetProviderProps = {
     children: ReactNode
 }
@@ -19,7 +18,7 @@ export const BudgetContext = createContext<BudgetContextProps>({} as BudgetConte
 export const BudgetProvider = ({children} : BudgetProviderProps) => {
     const [state, dispatch] = useReducer(budgetReducer, initialState)
     return (
-        <BudgetContext.Provider
+        <BudgetContext.Provider // Que le vamos a proveer desde el BudgetProvider
             value={{
                 state,
                 dispatch
