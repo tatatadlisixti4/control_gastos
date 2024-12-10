@@ -1,19 +1,28 @@
-import {useState, useMemo, ChangeEvent} from "react"
+import {useState, useMemo, ChangeEvent, FormEvent} from "react"
+import {useBugdet} from "../hooks/useBudget"
 
 export default function BudgetForm() {
     // State local para validar el formulario
     const [budget, setBudget] = useState(0)
+    const {state, dispatch} = useBugdet()
     
     // Funciones para validar el formulario e iniciar el state local
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
         setBudget(e.target.valueAsNumber)
     }
+
     const isValid = useMemo(() => {
         return isNaN(budget) || budget <= 0
     }, [budget])
 
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        dispatch({type: 'add-budget', payload: {budget: budget}})
+    }
+
+
     return (
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex flex-col space-y-5">
                 <label htmlFor="budget" className="text-4xl text-blue-600 font-bold text-center">
                     Definir Presupuesto
