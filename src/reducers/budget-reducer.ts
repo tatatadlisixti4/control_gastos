@@ -4,9 +4,11 @@ export type BudgetActions =
 export type BudgetState = {
     budget: number
 }
+
 export const initialState: BudgetState = {
     budget: 0
 }
+
 export const budgetReducer = (
     state: BudgetState = initialState,
     action: BudgetActions
