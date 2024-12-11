@@ -42,9 +42,16 @@ export default function ExpenseForm() {
         if(Object.values(expense).includes('')) {
             return setError('Todos los campos son obligatorios')
         }
-
         // Agregar nuevo gasto
         dispatch({type: 'add-expense', payload: {expense}})
+        // Reiniciar el state
+        setExpense({
+            amount: 0,
+            expenseName: '',
+            category: '',
+            date: new Date()
+        })
+
     }
     return (
         <form className="space-y-5" onSubmit={handleSubmit}>
