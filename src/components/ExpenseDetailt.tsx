@@ -2,6 +2,7 @@ import {categories} from "../data/categories"
 import {formatDate} from "../helpers"
 import {useMemo} from "react"
 import {Expense} from "../types"
+import {useBugdet} from "../hooks/useBudget"
 import AmountDisplay from "./AmountDisplay"
 
 import {
@@ -20,6 +21,7 @@ type ExpenseDetailtProps = {
 }
 
 export default function ExpenseDetailt({expense}: ExpenseDetailtProps) {
+    const {dispatch} = useBugdet()
     const categoryInfo = useMemo(() => categories.filter(cat => cat.id === expense.category)[0], [expense]) 
     const leadingActions = () => (
         <LeadingActions>
@@ -34,7 +36,7 @@ export default function ExpenseDetailt({expense}: ExpenseDetailtProps) {
     const trailingActions = () => (
         <TrailingActions>
             <SwipeAction
-                onClick={() => {}}
+                onClick={() => dispatch({type: 'remove-expense', payload: {id: expense.id}})}
                 destructive={true}
             >
                 Eliminar
