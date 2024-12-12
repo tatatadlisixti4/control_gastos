@@ -1,6 +1,13 @@
 import {categories} from "../data/categories"
+import {useBugdet} from "../hooks/useBudget"
+import {ChangeEvent} from "react"
 
 export default function FilterByCategory() {
+    const {dispatch} = useBugdet()
+    const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch({type: 'add-filter-category', payload: {id: e.target.value}})
+    }
+
     return (
         <div className="bg-white shadow-lg rounded-lg p-10">
             <form>
@@ -9,6 +16,8 @@ export default function FilterByCategory() {
                     <select 
                         id="category"
                         className="flex-1 bg-slate-100 p-3 rounded"
+                        onChange={handleChange}
+
                     >
                         <option value="">-- Todas las Categorías --</option>
                         {categories.map(category => (
