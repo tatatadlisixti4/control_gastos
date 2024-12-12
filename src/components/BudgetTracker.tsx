@@ -1,7 +1,12 @@
+import {useBugdet} from "../hooks/useBudget";
+import {useMemo, useReducer} from "react";
 import AmountDisplay from "./AmountDisplay";
 
 
 export default function BudgetTracker() {
+    const {state} = useBugdet()
+    const totalExpenses = useMemo(() => state.expenses.reduce((total, expense) => expense.amount + total, 0), [state.expenses])
+    const remainingBudget = state.budget - totalExpenses
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="flex justify-center">
@@ -14,15 +19,15 @@ export default function BudgetTracker() {
                 >Resetear App</button>
                 <AmountDisplay 
                     label="Presupuesto"
-                    amount={300}
+                    amount={state.budget}
                 />
                 <AmountDisplay 
                     label="Disponible"
-                    amount={200}
+                    amount={remainingBudget}
                 />
                 <AmountDisplay 
                     label="Gastado"
-                    amount={100}
+                    amount={totalExpenses}
                 />
             </div>
         </div>

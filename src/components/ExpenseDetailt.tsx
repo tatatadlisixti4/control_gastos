@@ -15,7 +15,6 @@ import {
 
 import "react-swipeable-list/dist/styles.css"
 
-
 type ExpenseDetailtProps = {
     expense: Expense
 }
