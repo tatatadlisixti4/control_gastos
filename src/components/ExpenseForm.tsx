@@ -18,12 +18,14 @@ export default function ExpenseForm() {
         date: new Date()
     })
     const [error, setError] = useState('')
-    const {dispatch, state} = useBugdet()
+    const [previousAmount, setPreviousAmount] = useState(0)
+    const {dispatch, state, remainingBudget} = useBugdet()
 
     useEffect(() => {
         if(state.editingId){
             const editingExpense = state.expenses.filter( currentExpense => currentExpense.id === state.editingId)[0]
             setExpense(editingExpense)
+            setPreviousAmount(editingExpense.amount)
         }
     }, [state.editingId])
 
@@ -46,9 +48,11 @@ export default function ExpenseForm() {
     const handleSubmit = (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         // Validar
-        if(Object.values(expense).includes('')) {
-            return setError('Todos los campos son obligatorios')
+        if((expense.amount - previousAmount) > remainingBudget) {
+            return setError('ESe gasto se sale del presupuesto')
         }
+        // Validar gasto en los limites correctos
+
         // Agregar o actualizar el gasto
         if(state.editingId) {
             dispatch({type: 'update-expense', payload: {expense: {id: state.editingId, ...expense}}})
@@ -63,7 +67,7 @@ export default function ExpenseForm() {
             category: '',
             date: new Date()
         })
-
+        setPreviousAmount(0)
     }
     return (
         <form className="space-y-5" onSubmit={handleSubmit}>

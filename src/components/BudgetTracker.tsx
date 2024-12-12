@@ -1,12 +1,9 @@
 import {useBugdet} from "../hooks/useBudget";
-import {useMemo, useReducer} from "react";
 import AmountDisplay from "./AmountDisplay";
 
 
 export default function BudgetTracker() {
-    const {state} = useBugdet()
-    const totalExpenses = useMemo(() => state.expenses.reduce((total, expense) => expense.amount + total, 0), [state.expenses])
-    const remainingBudget = state.budget - totalExpenses
+    const {state, totalExpenses, remainingBudget} = useBugdet()
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div className="flex justify-center">
