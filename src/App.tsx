@@ -21,7 +21,6 @@ function App() {
                 <main className="max-w-3xl mx-auto py-10">
                     <ExpenseList />
                     <ExpenseModal />
-                    
                 </main>
                 
             )}
