@@ -4,7 +4,7 @@ import {useBugdet} from "../hooks/useBudget"
 export default function BudgetForm() {
     // State local para validar el formulario
     const [budget, setBudget] = useState(0)
-    const {state, dispatch} = useBugdet()
+    const {dispatch} = useBugdet()
     
     // Funciones para validar el formulario e iniciar el state local
     const handleChange = (e : ChangeEvent<HTMLInputElement>) => {
