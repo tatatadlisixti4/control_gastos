@@ -49,7 +49,7 @@ export default function ExpenseForm() {
         e.preventDefault()
         // Validar
         if((expense.amount - previousAmount) > remainingBudget) {
-            return setError('ESe gasto se sale del presupuesto')
+            return setError('Ese gasto se sale del presupuesto')
         }
         // Validar gasto en los limites correctos
 

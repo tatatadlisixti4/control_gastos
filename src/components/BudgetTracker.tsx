@@ -5,7 +5,7 @@ import AmountDisplay from "./AmountDisplay"
 
 
 export default function BudgetTracker() {
-    const {state, totalExpenses, remainingBudget} = useBugdet()
+    const {dispatch, state, totalExpenses, remainingBudget} = useBugdet()
     const percentage = +((totalExpenses / state.budget) * 100).toFixed(2)
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -25,6 +25,7 @@ export default function BudgetTracker() {
                 <button
                     type="button"
                     className="bg-pink-600 w-full p-2 text-white uppercase font-bold rounded-lg hover:bg-pink-800"
+                    onClick={() => dispatch({type: 'reset-app'})}
                 >Resetear App</button>
                 <AmountDisplay 
                     label="Presupuesto"
