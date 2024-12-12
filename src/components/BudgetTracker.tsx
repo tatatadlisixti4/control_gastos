@@ -18,7 +18,7 @@ export default function BudgetTracker() {
                         textSize: 8,
                         textColor: percentage === 100 ? '#DC2626' : '#3b82f6'
                     })}
-                    text={`${percentage} Gastado`}
+                    text={`${percentage}% Gastado`}
                 />
             </div>
             <div className="flex flex-col justify-center items-center gap-8">
